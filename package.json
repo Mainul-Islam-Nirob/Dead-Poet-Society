@@ -1,0 +1,25 @@
+{
+  "name": "dead-poet-society",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Md. Mainul Islam",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^17.0.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
+    "passport": "^0.7.0",
+    "pg": "^8.16.3"
+  }
+}
