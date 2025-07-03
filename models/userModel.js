@@ -20,8 +20,8 @@ async function findUserById(id) {
   return result.rows[0];
 }
 
-async function updateMembershipStatus(userId) {
-  await pool.query(`UPDATE users SET is_member = TRUE WHERE id = $1`, [userId]);
+async function updateMembershipStatus(userId, status) {
+  await pool.query('UPDATE users SET is_member = $1 WHERE id = $2', [status, userId]);
 }
 
 async function updateAdminStatus(userId) {

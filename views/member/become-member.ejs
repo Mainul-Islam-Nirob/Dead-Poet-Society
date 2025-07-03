@@ -1,0 +1,23 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 p-6 text-white">
+  <div class="max-w-lg w-full bg-white/5 backdrop-blur rounded-2xl shadow-2xl p-8 border border-white/10">
+    <h2 class="text-3xl font-bold mb-4 text-center">Join the Inner Circle</h2>
+    <p class="italic text-gray-300 mb-6 text-center">“To strive, to seek, to find, and not to yield.” — Who said this?</p>
+
+    <% if (errors.length > 0) { %>
+      <div class="bg-red-600 text-white p-2 mb-4 rounded text-center"><%= errors[0].msg %></div>
+    <% } %>
+
+    <% if (success.length > 0) { %>
+      <div class="bg-green-600 text-white p-2 mb-4 rounded text-center"><%= success[0] %></div>
+    <% } %>
+
+    <form action="/become-member" method="POST" class="space-y-4">
+      <input type="text" name="secret" placeholder="Your Answer" required 
+        class="w-full px-4 py-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-2 focus:ring-indigo-500">
+
+      <button type="submit" class="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-md font-semibold tracking-wide">
+        Enter the Salon
+      </button>
+    </form>
+  </div>
+</div>
