@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
 const { createUser, findUserByUsername } = require('../models/userModel');
+const passport = require('passport');
 
 const router = express.Router();
 
@@ -51,5 +52,20 @@ router.post('/signup',
     }
   }
 );
+
+// GET Login Page
+router.get('/login', (req, res) => {
+  res.render('auth/login', { title: 'Login', errors: [], oldInput: {} });
+});
+
+// POST Login
+router.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+  })
+);
+
 
 module.exports = router;
