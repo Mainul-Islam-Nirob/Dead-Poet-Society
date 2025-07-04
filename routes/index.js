@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const messages = await getAllMessages();
-    const user = req.user;  // may be undefined
+    const user = req.user; 
     res.render('index', { title: 'Home', messages, user });
   } catch (err) {
     console.error(err);
