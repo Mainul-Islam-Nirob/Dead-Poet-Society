@@ -18,6 +18,18 @@ async function getAllMessages() {
   return result.rows;
 }
 
+// Fetch single message with author details
+async function getMessageById(id) {
+  const result = await pool.query(`
+    SELECT messages.*, users.first_name, users.last_name, users.is_member, users.id as author_id
+    FROM messages
+    JOIN users ON messages.author_id = users.id
+    WHERE messages.id = $1
+  `, [id]);
+
+  return result.rows[0];
+}
+
 async function deleteMessageById(messageId) {
   await pool.query(`DELETE FROM messages WHERE id = $1`, [messageId]);
 }
@@ -25,5 +37,6 @@ async function deleteMessageById(messageId) {
 module.exports = {
   createMessage,
   getAllMessages,
+  getMessageById,
   deleteMessageById,
 };

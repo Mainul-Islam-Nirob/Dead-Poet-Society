@@ -1,6 +1,5 @@
 const express = require('express');
-const { createMessage } = require('../models/messageModel');
-const { deleteMessageById } = require('../models/messageModel');
+const { deleteMessageById, createMessage, getMessageById } = require('../models/messageModel');
 
 const router = express.Router();
 
@@ -51,6 +50,33 @@ router.post('/manuscript/new', ensureAuthenticated, async (req, res) => {
 });
 
 
+// Single Manuscript View Route
+router.get('/manuscript/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const message = await getMessageById(id);
+
+    if (!message) {
+      req.flash('error', 'Manuscript not found.');
+      return res.redirect('/');
+    }
+
+    const showAuthor = req.user && (req.user.is_member || req.user.id === message.author_id || req.user.is_admin);
+
+    res.render('message/detail', {
+      title: message.title,
+      message,
+      showAuthor
+    });
+
+  } catch (err) {
+    console.error(err);
+    req.flash('error', 'Failed to load manuscript.');
+    res.redirect('/');
+  }
+});
+
 router.post('/manuscript/:id/delete', ensureAdmin, async (req, res) => {
   try {
     await deleteMessageById(req.params.id);
@@ -62,6 +88,7 @@ router.post('/manuscript/:id/delete', ensureAdmin, async (req, res) => {
     res.redirect('/');
   }
 });
+
 
 
 module.exports = router;

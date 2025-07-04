@@ -66,7 +66,10 @@
         </div>
 
         <!-- Manuscript Content -->
-        <h3 class="text-xl font-bold mb-2 text-white"><%= message.title %></h3>
+        <h3 class="text-xl font-bold mb-2 text-white">
+            <a href="/manuscript/<%= message.id %>" class="hover:text-indigo-400"><%= message.title %></a>
+        </h3>
+
         <p class="text-gray-300 mb-2 italic">"<%= message.text.length > 200 ? message.text.slice(0, 200) + '...' : message.text %>"</p>
 
         <% if (user && user.is_admin) { %>
