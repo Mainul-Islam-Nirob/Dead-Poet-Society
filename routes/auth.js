@@ -67,5 +67,14 @@ router.post('/login',
   })
 );
 
+// Logout Route
+router.get('/logout', (req, res, next) => {
+  req.logout(err => {
+    if (err) return next(err);
+    req.flash('success', 'You have left the Society.');
+    res.redirect('/');
+  });
+});
+
 
 module.exports = router;
