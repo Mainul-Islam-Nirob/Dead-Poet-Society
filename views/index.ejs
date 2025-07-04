@@ -16,6 +16,11 @@
         <a href="/become-member" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">📜 Claim Membership</a>
     <% } %>
 
+    <% if (user && !user.is_admin) { %>
+        <a href="/become-admin" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">🛡️ Become Admin</a>
+    <% } %>
+
+
     <% if (user) { %>
         <a href="/manuscript/new" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">✍️ Pen Manuscript</a>
         <a href="/logout" class="px-4 py-2 bg-red-700 hover:bg-red-800 rounded-xl shadow text-white font-semibold">⏻ Logout</a>

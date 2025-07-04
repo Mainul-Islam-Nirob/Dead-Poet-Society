@@ -13,11 +13,10 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const memberRouter = require('./routes/member');
 const messageRouter = require('./routes/message');
-
+const adminRouter = require('./routes/admin');
 
 
 require('dotenv').config();
-
 
 const app = express();
 
@@ -31,7 +30,7 @@ app.set('layout', 'layout');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 
-//making the time availabel to views
+//making the time available to views
 app.locals.moment = moment;
 
 
@@ -83,6 +82,8 @@ app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/', memberRouter);
 app.use('/', messageRouter);
+app.use('/', adminRouter);
+
 
 
 
