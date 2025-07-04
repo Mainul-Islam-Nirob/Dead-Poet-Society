@@ -18,7 +18,7 @@
 
     <% if (user) { %>
         <a href="/manuscript/new" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">✍️ Pen Manuscript</a>
-        <a href="/logout" class="px-4 py-2 bg-red-700 hover:bg-red-800 rounded-xl shadow text-white font-semibold">🚪 Logout</a>
+        <a href="/logout" class="px-4 py-2 bg-red-700 hover:bg-red-800 rounded-xl shadow text-white font-semibold">⏻ Logout</a>
     <% } %>
 
 </div>
@@ -39,7 +39,6 @@
       const isAuthor = user && user.id === message.author_id;
       const isMember = user && user.is_member;
       const showAuthor = isAuthor || isMember;
-      console.log(isAuthor, isMember);
     %>
 
       <div class="bg-white/5 p-6 rounded-xl border border-white/10 shadow-lg">
@@ -64,6 +63,13 @@
         <!-- Manuscript Content -->
         <h3 class="text-xl font-bold mb-2 text-white"><%= message.title %></h3>
         <p class="text-gray-300 mb-2 italic">"<%= message.text.length > 200 ? message.text.slice(0, 200) + '...' : message.text %>"</p>
+
+        <% if (user && user.is_admin) { %>
+        <form action="/manuscript/<%= message.id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to erase this manuscript?');">
+            <button type="submit" class="mt-2 px-3 py-1 bg-red-700 hover:bg-red-800 text-white text-sm rounded-lg">🗑️ Delete</button>
+        </form>
+        <% } %>
+
 
       </div>
 

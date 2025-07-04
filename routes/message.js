@@ -1,5 +1,6 @@
 const express = require('express');
 const { createMessage } = require('../models/messageModel');
+const { deleteMessageById } = require('../models/messageModel');
 
 const router = express.Router();
 
@@ -8,6 +9,15 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect('/login');
 }
+
+
+function ensureAdmin(req, res, next) {
+  if (req.isAuthenticated() && req.user.is_admin) {
+    return next();
+  }
+  res.redirect('/');
+}
+
 
 // GET: Pen a Manuscript
 router.get('/manuscript/new', ensureAuthenticated, (req, res) => {
@@ -39,5 +49,19 @@ router.post('/manuscript/new', ensureAuthenticated, async (req, res) => {
     });
   }
 });
+
+
+router.post('/manuscript/:id/delete', ensureAdmin, async (req, res) => {
+  try {
+    await deleteMessageById(req.params.id);
+    req.flash('success', 'Manuscript erased from history.');
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    req.flash('error', 'Could not delete manuscript.');
+    res.redirect('/');
+  }
+});
+
 
 module.exports = router;
