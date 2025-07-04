@@ -1,0 +1,39 @@
+
+<div class="max-w-6xl mx-auto mt-10 p-8 rounded-xl shadow-xl bg-gray-900 text-white">
+  <h1 class="text-3xl font-bold text-indigo-300 mb-8 text-center">👥 Society Member Records</h1>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-sm border border-gray-800">
+      <thead class="bg-gray-800 text-indigo-200">
+        <tr>
+          <th class="px-4 py-2">#</th>
+          <th class="px-4 py-2">Full Name</th>
+          <th class="px-4 py-2">Email</th>
+          <th class="px-4 py-2">Manuscripts</th>
+          <th class="px-4 py-2">Membership</th>
+          <th class="px-4 py-2">Role</th>
+          <th class="px-4 py-2">Joined</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach((user, index) => { %>
+          <tr class="border-b border-gray-700 text-gray-300">
+            <td class="px-4 py-2"><%= index + 1 %></td>
+            <td class="px-4 py-2"><%= user.first_name %> <%= user.last_name %></td>
+            <td class="px-4 py-2"><%= user.username %></td>
+            <td class="px-4 py-2 text-center"><%= user.post_count %></td>
+            <td class="px-4 py-2 text-center">
+              <%= user.is_member ? '✅ Member' : '❌ Not Member' %>
+            </td>
+            <td class="px-4 py-2 text-center">
+              <%= user.is_admin ? '🛡️ Admin' : '👤 User' %>
+            </td>
+            <td class="px-4 py-2 italic"><%= new Date(user.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <a href="/" class="mt-8 inline-block px-5 py-2 bg-gray-700 hover:bg-gray-800 rounded-lg text-indigo-200">← Return to Salon</a>
+</div>

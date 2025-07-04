@@ -34,6 +34,18 @@ async function getAllUsers() {
   return result.rows;
 }
 
+async function getAllUsersWithPostCount() {
+  const result = await pool.query(`
+    SELECT users.id, users.first_name, users.last_name, users.username, users.is_member, users.is_admin, users.created_at,
+      COUNT(messages.id) AS post_count
+    FROM users
+    LEFT JOIN messages ON users.id = messages.author_id
+    GROUP BY users.id
+    ORDER BY users.id
+  `);
+  return result.rows;
+}
+
 module.exports = {
   createUser,
   findUserByUsername,
@@ -41,4 +53,5 @@ module.exports = {
   updateMembershipStatus,
   updateAdminStatus,
   getAllUsers,
+  getAllUsersWithPostCount,
 };

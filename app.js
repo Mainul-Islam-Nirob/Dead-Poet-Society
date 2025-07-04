@@ -14,6 +14,8 @@ const authRouter = require('./routes/auth');
 const memberRouter = require('./routes/member');
 const messageRouter = require('./routes/message');
 const adminRouter = require('./routes/admin');
+const userRouter = require('./routes/user');
+
 
 
 require('dotenv').config();
@@ -84,10 +86,7 @@ app.use('/', authRouter);
 app.use('/', memberRouter);
 app.use('/', messageRouter);
 app.use('/', adminRouter);
-
-
-
-
+app.use('/', userRouter);
 
 
 // Start Server
