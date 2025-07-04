@@ -7,6 +7,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { findUserByUsername, findUserById } = require('./models/userModel');
 const bcrypt = require('bcryptjs');
+const moment = require('moment');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -29,6 +30,10 @@ app.set('layout', 'layout');
 // Static Files
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
+
+//making the time availabel to views
+app.locals.moment = moment;
+
 
 //Express Session
 app.use(session({

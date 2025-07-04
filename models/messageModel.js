@@ -10,7 +10,7 @@ async function createMessage(title, text, authorId) {
 
 async function getAllMessages() {
   const result = await pool.query(`
-    SELECT messages.*, users.first_name, users.last_name
+    SELECT messages.*, users.first_name, users.last_name, users.is_member
     FROM messages
     JOIN users ON messages.author_id = users.id
     ORDER BY messages.timestamp DESC

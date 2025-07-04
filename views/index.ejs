@@ -1,12 +1,65 @@
-<div class="max-w-2xl mx-auto text-center py-12">
-  <h1 class="text-4xl font-bold mb-4 text-indigo-300">Dead Poet Society</h1>
-  <p class="italic text-gray-400 mb-6">“We don't write because we want to; we write because we have to.”</p>
+<div class="min-h-screen py-12 px-4 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <a href="/signup" class="block bg-gray-800 hover:bg-indigo-700 p-4 rounded-xl shadow text-white font-semibold">📝 Join the Society</a>
-    <a href="/login" class="block bg-gray-800 hover:bg-indigo-700 p-4 rounded-xl shadow text-white font-semibold">🔑 Log In</a>
-    <a href="/become-member" class="block bg-gray-800 hover:bg-indigo-700 p-4 rounded-xl shadow text-white font-semibold">📜 Become a Member</a>
-    <a href="/manuscript/new" class="block bg-gray-800 hover:bg-indigo-700 p-4 rounded-xl shadow text-white font-semibold">✍️ Pen a Manuscript</a>
-    <a href="/logout" class="block bg-gray-800 hover:bg-red-700 p-4 rounded-xl shadow text-white font-semibold">🚪 Exit (Logout)</a>
+  <!-- Title -->
+  <h1 class="text-4xl font-bold text-center mb-4 text-indigo-300">Dead Poet Society</h1>
+  <p class="italic text-gray-400 mb-10 text-center">“We don't write because we want to; we write because we have to.”</p>
+
+  <!-- Navigation (Creative Literary Nav) -->
+  <div class="flex flex-wrap justify-center gap-4 mb-10">
+    <a href="/signup" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">📝 SignUp</a>
+    <a href="/login" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">🔑 Login</a>
+    <a href="/become-member" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">📜 Claim Membership</a>
+    <a href="/manuscript/new" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">✍️ Pen Manuscript</a>
+    <% if (user) { %>
+      <a href="/logout" class="px-4 py-2 bg-red-700 hover:bg-red-800 rounded-xl shadow text-white font-semibold">🚪 Exit</a>
+    <% } %>
   </div>
+
+  <% if (success && success.length > 0) { %>
+    <div class="max-w-xl mx-auto mb-6 p-4 rounded-xl bg-green-600 text-white text-center"><%= success[0] %></div>
+  <% } %>
+
+  <% if (messages.length === 0) { %>
+    <p class="text-center text-gray-400 italic">No manuscripts have been penned yet...</p>
+  <% } %>
+
+  <!-- Manuscripts -->
+  <div class="grid gap-6 max-w-3xl mx-auto">
+
+    <% messages.forEach(message => {
+      const isAuthor = user && user.id === message.author_id;
+      const isMember = user && user.is_member;
+      const showAuthor = isAuthor || isMember;
+      console.log(isAuthor, isMember);
+    %>
+
+      <div class="bg-white/5 p-6 rounded-xl border border-white/10 shadow-lg">
+
+        <!-- Profile + Author Info -->
+        <div class="flex items-center mb-4">
+          <img src="/images/quill.png" alt="Quill Icon" class="w-10 h-10 rounded-full border border-white/20 mr-3">
+
+          <div>
+            <p class="font-semibold text-indigo-300 flex items-center gap-2">
+              🖋️
+              <%= showAuthor ? `${message.first_name} ${message.last_name}` : 'Anonymous' %>
+            </p>
+
+            <p class="text-sm text-gray-400 flex items-center gap-1">
+              ⏳
+              <%= showAuthor ? moment(message.timestamp).fromNow() : '*****' %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Manuscript Content -->
+        <h3 class="text-xl font-bold mb-2 text-white"><%= message.title %></h3>
+        <p class="text-gray-300 mb-2 italic">"<%= message.text.length > 200 ? message.text.slice(0, 200) + '...' : message.text %>"</p>
+
+      </div>
+
+    <% }) %>
+
+  </div>
+
 </div>
