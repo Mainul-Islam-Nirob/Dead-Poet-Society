@@ -20,6 +20,10 @@
         <a href="/become-admin" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">🛡️ Become Admin</a>
     <% } %>
 
+    <% if (user && user.is_admin) { %>
+        <a href="/admin/dashboard" class="px-4 py-2 bg-indigo-800 hover:bg-indigo-900 rounded-xl shadow text-white font-semibold">🛡️ Admin Panel</a>
+    <% } %>
+
 
     <% if (user) { %>
         <a href="/manuscript/new" class="px-4 py-2 bg-gray-800 hover:bg-indigo-700 rounded-xl shadow text-white font-semibold">✍️ Pen Manuscript</a>

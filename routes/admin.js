@@ -1,10 +1,17 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
-const {  updateAdminStatus } = require('../models/userModel');
+const {  updateAdminStatus, getAllUsers } = require('../models/userModel');
+const { getAllMessages, deleteMessageById } = require('../models/messageModel');
 require('dotenv').config();
 
 const router = express.Router();
 
+// Middleware to protect admin routes
+function ensureAdmin(req, res, next) {
+  if (req.isAuthenticated() && req.user.is_admin) return next();
+  req.flash('error', 'Access denied.');
+  res.redirect('/');
+}
 
 // GET Admin Page
 router.get('/become-admin', (req, res) => {
@@ -37,5 +44,31 @@ router.post('/become-admin',
     }
   }
 );
+
+// GET Admin Dashboard
+router.get('/admin/dashboard', ensureAdmin, async (req, res) => {
+  try {
+    const messages = await getAllMessages();
+    const users = await getAllUsers();
+    res.render('admin/dashboard', { title: 'Admin Dashboard', messages, users });
+  } catch (err) {
+    console.error(err);
+    req.flash('error', 'Failed to load dashboard.');
+    res.redirect('/');
+  }
+});
+
+// DELETE Message (Reuse existing route or create here if needed)
+router.post('/admin/manuscript/:id/delete', ensureAdmin, async (req, res) => {
+  try {
+    await deleteMessageById(req.params.id);
+    req.flash('success', 'Manuscript deleted.');
+    res.redirect('/admin/dashboard');
+  } catch (err) {
+    console.error(err);
+    req.flash('error', 'Failed to delete.');
+    res.redirect('/admin/dashboard');
+  }
+});
 
 module.exports = router;

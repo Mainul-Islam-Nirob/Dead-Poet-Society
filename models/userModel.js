@@ -28,10 +28,17 @@ async function updateAdminStatus(userId) {
   await pool.query(`UPDATE users SET is_admin = TRUE WHERE id = $1`, [userId]);
 }
 
+
+async function getAllUsers() {
+  const result = await pool.query('SELECT id, first_name, last_name, username, is_member, is_admin FROM users ORDER BY id');
+  return result.rows;
+}
+
 module.exports = {
   createUser,
   findUserByUsername,
   findUserById,
   updateMembershipStatus,
   updateAdminStatus,
+  getAllUsers,
 };
