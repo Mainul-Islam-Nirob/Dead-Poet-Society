@@ -11,6 +11,8 @@ const bcrypt = require('bcryptjs');
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const memberRouter = require('./routes/member');
+const messageRouter = require('./routes/message');
+
 
 
 require('dotenv').config();
@@ -75,6 +77,9 @@ passport.deserializeUser(async (id, done) => {
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/', memberRouter);
+app.use('/', messageRouter);
+
+
 
 
 
