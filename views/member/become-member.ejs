@@ -1,14 +1,15 @@
 <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 p-6 text-white">
   <div class="max-w-lg w-full bg-white/5 backdrop-blur rounded-2xl shadow-2xl p-8 border border-white/10">
-    <h2 class="text-3xl font-bold mb-4 text-center">Join the Inner Circle</h2>
+    
+    <h2 class="text-3xl font-bold mb-4 text-center text-indigo-300">Join the Inner Circle</h2>
     <p class="italic text-gray-300 mb-6 text-center">“To strive, to seek, to find, and not to yield.” — Who said this?</p>
 
     <% if (errors.length > 0) { %>
-      <div class="bg-red-600 text-white p-2 mb-4 rounded text-center"><%= errors[0].msg %></div>
+      <div class="bg-red-600 text-white p-2 mb-4 rounded text-center shadow"><%= errors[0].msg %></div>
     <% } %>
 
     <% if (success.length > 0) { %>
-      <div class="bg-green-600 text-white p-2 mb-4 rounded text-center"><%= success[0] %></div>
+      <div class="bg-green-600 text-white p-2 mb-4 rounded text-center shadow"><%= success[0] %></div>
     <% } %>
 
     <form action="/become-member" method="POST" class="space-y-4">
@@ -19,5 +20,28 @@
         Enter the Salon
       </button>
     </form>
+
+    <div class="mt-8 border-t border-gray-700 pt-6 text-sm text-gray-300">
+      <h3 class="text-indigo-200 text-center font-semibold mb-4 tracking-wide">🗝 What Awaits Inside?</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400">✒️</span>
+          <span>Reveal the authors behind the anonymous manuscripts.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400">📜</span>
+          <span>Compose your own timeless words for fellow seekers to read.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400">🕰️</span>
+          <span>View when each manuscript was penned—hours, days, or moons ago.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-indigo-400">🖋️</span>
+          <span>Join a secret circle of wordsmiths, poets, and literary wanderers.</span>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </div>
