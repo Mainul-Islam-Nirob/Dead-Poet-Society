@@ -6,7 +6,7 @@ An exclusive online **Salon of Words** where members can anonymously share manus
 
 ## 🌸 Live Site
 
-[View the Dead Poet Society](#) 
+[View the Dead Poet Society](https://dead-poet-society.onrender.com/) 
 
 ---
 
@@ -119,12 +119,67 @@ Inspired by literature, poetry, and the timeless urge to express.
 
 ---
 
+## 🚀 Future Improvements
+
+Here are some features planned for the next versions of **Dead Poet Society**:
+
+- ✍️ **Comment System:**  
+  Allow members to leave comments on manuscripts, fostering literary discussion.
+
+- 👍 **Upvote / Like System:**  
+  Introduce the ability to like or upvote manuscripts that resonate with readers.
+
+- 👤 **User Profile Pages:**  
+  Each user will have a public profile showing:
+  - Display name
+  - Bio
+  - Favorite literary quote
+  - List of manuscripts
+
+- 🔍 **Search & Filter Manuscripts:**  
+  Add the ability to search for manuscripts by keywords, author, or date.
+
+- ✏️ **Edit & Delete Own Manuscripts:**  
+  Members will be able to update or delete their own writings while maintaining privacy.
+
+- 🛠 **Admin Role Management:**  
+  From the Admin Panel, allow changing users' roles (Member ⇄ Admin) dynamically.
+
+
+---
+
 ## 📧 Author
 
 [Github](Mainul-Islam-Nirob)  
 
 ---
 
-## 🌸 Screenshots
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](./public/images/home.png)
 
 ---
+
+### 🙋‍♂️ User View (Non-Member)
+![User View](./public/images/user.png)
+
+---
+
+### 🏛 Member View (After Claiming Membership)
+![Member View](./public/images/member.png)
+
+---
+
+### 🛡 Admin View
+![Admin View](./public/images/admin.png)
+
+---
+
+### 👥 Member Records
+![Member Records](./public/images/member-records.png)
+
+---
+
+### ⚙️ Admin Panel
+![Admin Panel](./public/images/admin-panel.png)
