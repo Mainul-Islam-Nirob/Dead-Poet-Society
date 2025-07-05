@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
     res.render('index', { title: 'Home', messages, user });
   } catch (err) {
     console.error(err);
+    req.flash('error', 'Failed to load manuscripts. Try again later.');
     res.render('index', { title: 'Home', messages: [], user: req.user });
   }
 });

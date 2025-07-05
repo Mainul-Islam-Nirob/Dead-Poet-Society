@@ -1,9 +1,18 @@
 <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6">
   <div class="max-w-md w-full bg-white/5 backdrop-blur rounded-2xl shadow-2xl p-8 border border-white/10">
     <h2 class="text-3xl font-bold mb-4 text-center">Welcome Back</h2>
-    <% if (error && error.length > 0) { %>
-      <div class="bg-red-600 text-white rounded p-2 mb-4 text-center"><%= error[0] %></div>
-    <% } %>
+    <% if (success && success.length > 0) { %>
+  <div class="max-w-xl mx-auto mb-6 p-4 rounded-xl bg-green-700 text-white text-center shadow-lg italic tracking-wide">
+    🌿 <%= success[0] %>
+  </div>
+<% } %>
+
+<% if (error && error.length > 0) { %>
+  <div class="max-w-xl mx-auto mb-6 p-4 rounded-xl bg-red-700 text-white text-center shadow-lg italic tracking-wide">
+    ⚠️ <%= error[0] %>
+  </div>
+<% } %>
+
 
     <form action="/login" method="POST" class="space-y-4">
       <div>

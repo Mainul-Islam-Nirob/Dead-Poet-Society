@@ -38,9 +38,17 @@
 </div>
 
 
-  <% if (success && success.length > 0) { %>
-    <div class="max-w-xl mx-auto mb-6 p-4 rounded-xl bg-green-600 text-white text-center"><%= success[0] %></div>
-  <% } %>
+ <% if (success && success.length > 0) { %>
+  <div class="max-w-xl mx-auto mb-6 p-4 rounded-xl bg-green-700 text-white text-center shadow-lg italic tracking-wide">
+    🌿 <%= success[0] %>
+  </div>
+<% } %>
+
+<% if (error && error.length > 0) { %>
+  <div class="max-w-xl mx-auto mb-6 p-4 rounded-xl bg-red-700 text-white text-center shadow-lg italic tracking-wide">
+    ⚠️ <%= error[0] %>
+  </div>
+<% } %>
 
   <% if (messages.length === 0) { %>
     <p class="text-center text-gray-400 italic">No manuscripts have been penned yet...</p>

@@ -59,13 +59,21 @@ router.get('/login', (req, res) => {
 });
 
 // POST Login
-router.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-  })
-);
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) return next(err);
+    if (!user) {
+      req.flash('error', 'Invalid credentials. Try again.');
+      return res.redirect('/login');
+    }
+    req.logIn(user, err => {
+      if (err) return next(err);
+      req.flash('success', `Welcome back, ${user.first_name}!`);
+      return res.redirect('/');
+    });
+  })(req, res, next);
+});
+
 
 // Logout Route
 router.get('/logout', (req, res, next) => {
